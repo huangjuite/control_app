@@ -35,7 +35,6 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
     Button btnFindUnpairedDevices;
     BluetoothConnectionService mBluetoothConnection;
 
-    Button btnStartConnection;
     Button btnSend;
 
     EditText etSend;
@@ -117,8 +116,6 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
     };
 
 
-
-
     /**
      * Broadcast Receiver for listing devices that are not yet paired
      * -Executed by btnDiscover() method.
@@ -168,6 +165,10 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         }
     };
 
+    public BluetoothConnectionService getmBluetoothConnection() {
+        return mBluetoothConnection;
+    }
+
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy: called.");
@@ -176,7 +177,6 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         getActivity().unregisterReceiver(mBroadcastReceiver2);
         getActivity().unregisterReceiver(mBroadcastReceiver3);
         getActivity().unregisterReceiver(mBroadcastReceiver4);
-        //mBluetoothAdapter.cancelDiscovery();
     }
 
     @Nullable
@@ -188,7 +188,6 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         lvNewDevices = (ListView) view.findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
         btnFindUnpairedDevices = view.findViewById(R.id.btnFindUnpairedDevices);
-        btnStartConnection = (Button) view.findViewById(R.id.btnStartConnection);
         btnSend = (Button) view.findViewById(R.id.btnSend);
         etSend = (EditText) view.findViewById(R.id.editText);
 
@@ -209,18 +208,10 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
             }
         });
 
-        btnStartConnection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startConnection();
-            }
-        });
-
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                byte[] bytes = etSend.getText().toString().getBytes(Charset.defaultCharset());
-                mBluetoothConnection.write(bytes);
+                mBluetoothConnection.write(etSend.getText().toString());
             }
         });
 
@@ -241,23 +232,6 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
 
         return view;
     }
-
-
-    //create method for starting connection
-    //***remember the conncction will fail and app will crash if you haven't paired first
-    public void startConnection(){
-        startBTConnection(mBTDevice,MY_UUID_INSECURE);
-    }
-
-    /**
-     * starting chat service method
-     */
-    public void startBTConnection(BluetoothDevice device, UUID uuid){
-        Log.d(TAG, "startBTConnection: Initializing RFCOM Bluetooth Connection.");
-
-        mBluetoothConnection.startClient(device,uuid);
-    }
-
 
 
     public void enableDisableBT(){
@@ -343,15 +317,11 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         Log.d(TAG, "onItemClick: deviceName = " + deviceName);
         Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
 
-        //create the bond.
-        //NOTE: Requires API 17+? I think this is JellyBean
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2){
-            Log.d(TAG, "Trying to pair with " + deviceName);
-            mBTDevices.get(i).createBond();
+        //mBTDevices.get(i).createBond();
 
-            mBTDevice = mBTDevices.get(i);
-            mBluetoothConnection = new BluetoothConnectionService(getActivity());
-        }
+        mBTDevice = mBluetoothAdapter.getRemoteDevice(deviceAddress);
+        mBluetoothConnection = new BluetoothConnectionService(getActivity(),mBTDevice);
+
     }
 
 }

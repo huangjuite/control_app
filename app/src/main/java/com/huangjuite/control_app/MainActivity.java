@@ -22,12 +22,20 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private SectionsPageAdapter mSectionsPageAdapter;
-
     private ViewPager mViewPager;
+
+    private control_frag control_fragment;
+    private bt_frag connection_fragment;
+
+    private Timer timer;
+    private TimerTask task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +44,27 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         Log.d(TAG, "onCreate: Starting.");
 
+        control_fragment = new control_frag();
+        connection_fragment = new bt_frag();
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                if(connection_fragment.getmBluetoothConnection()!=null && connection_fragment.getmBluetoothConnection().isConnected()){
+                    String motor_r,motor_l;
+                    int[] joyValue = control_fragment.getJoy_value();
+
+                    motor_l = toMotorString(joyValue[1]+joyValue[0]);
+                    motor_r = toMotorString(joyValue[1]-joyValue[0]);
+
+                    connection_fragment.getmBluetoothConnection().write(motor_l+motor_r);
+                }
+            }
+        };
+        timer = new Timer();
+        timer.scheduleAtFixedRate(task,1000,400);
+        Log.d(TAG,"timer set");
+
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -44,14 +72,27 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new control_frag(), "control");
-        adapter.addFragment(new bt_frag(), "connection");
-
+        adapter.addFragment(control_fragment, "control");
+        adapter.addFragment(connection_fragment, "connection");
         viewPager.setAdapter(adapter);
+
     }
+
+
+    private String toMotorString(int value){
+        String string = "";
+        string += (value>0)? "1":"0";
+        int v = Math.max(Math.min(Math.abs(value),99),0);
+        string += String.format("%02d",v);
+        return string;
+    }
+
+
 
 }

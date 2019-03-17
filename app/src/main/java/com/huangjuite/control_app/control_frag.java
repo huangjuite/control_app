@@ -26,11 +26,16 @@ public class control_frag extends Fragment {
     Joystick joystick_r;
     Joystick joystick_l;
 
+    private int joy_value[];
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.control_fragment,container,false);
 
+        joy_value = new int[2];
+        joy_value[0] = 0;
+        joy_value[1] = 0;
 
         yTextView = (TextView) view.findViewById(R.id.y_value);
         xTextView = (TextView) view.findViewById(R.id.x_value);
@@ -54,12 +59,13 @@ public class control_frag extends Fragment {
             public void onDrag(float degrees, float offset) {
                 float value = (float) (offset * 100 * Math.cos(Math.toRadians(degrees)));
                 xTextView.setText(String.format(xValueString, value));
-
+                joy_value[1] = (int)value;
             }
 
             @Override
             public void onUp() {
                 xTextView.setText(xNoneString);
+                joy_value[1] = 0;
             }
         });
 
@@ -73,16 +79,21 @@ public class control_frag extends Fragment {
             public void onDrag(float degrees, float offset) {
                 float value = (float) (offset * 100 * Math.sin(Math.toRadians(degrees)));
                 yTextView.setText(String.format(yValueString, value));
-
+                joy_value[0] = (int)value;
 
             }
 
             @Override
             public void onUp() {
                 yTextView.setText(yNoneString);
+                joy_value[0] = 0;
             }
         });
 
         return view;
+    }
+
+    public int[] getJoy_value() {
+        return joy_value;
     }
 }
