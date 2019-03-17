@@ -40,7 +40,7 @@ public class control_frag extends Fragment {
         yTextView = (TextView) view.findViewById(R.id.y_value);
         xTextView = (TextView) view.findViewById(R.id.x_value);
 
-        xNoneString = getString(R.string.y_value_none);
+        xNoneString = getString(R.string.x_value_none);
         xValueString = getString(R.string.x_value);
         yNoneString = getString(R.string.y_value_none);
         yValueString = getString(R.string.y_value);
