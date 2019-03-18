@@ -6,50 +6,37 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btnONOFF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/on_off"
-        app:layout_constraintBottom_toTopOf="@+id/lvNewDevices"
-        app:layout_constraintEnd_toStartOf="@+id/btnFindUnpairedDevices"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/btnDiscoverable_on_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="@string/enable_discoverable"
-        app:layout_constraintBottom_toTopOf="@+id/lvNewDevices"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnFindUnpairedDevices"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFindUnpairedDevices" />
 
     <Button
         android:id="@+id/btnFindUnpairedDevices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/discover"
-        app:layout_constraintBottom_toTopOf="@+id/lvNewDevices"
-        app:layout_constraintEnd_toStartOf="@+id/btnDiscoverable_on_off"
+        app:layout_constraintBottom_toTopOf="@+id/btnDiscoverable_on_off"
+        app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnONOFF"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSwitch" />
 
     <ListView
         android:id="@+id/lvNewDevices"
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
-        android:layout_below="@+id/btnStartConnection"
-        android:layout_marginBottom="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_width="338dp"
+        android:layout_height="252dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText"
@@ -76,6 +63,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/editText" />
+
+    <Switch
+        android:id="@+id/btSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BLUETOOTH"
+        app:layout_constraintBottom_toTopOf="@+id/btnFindUnpairedDevices"
+        app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

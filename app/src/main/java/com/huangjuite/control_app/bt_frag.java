@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
     BluetoothConnectionService mBluetoothConnection;
 
     Button btnSend;
-
+    Switch btSwitch;
     EditText etSend;
 
     private static final UUID MY_UUID_INSECURE =
@@ -62,12 +63,14 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
                 switch(state){
                     case BluetoothAdapter.STATE_OFF:
                         Log.d(TAG, "onReceive: STATE OFF");
+                        btSwitch.setChecked((false));
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
                         Log.d(TAG, "mBroadcastReceiver1: STATE TURNING OFF");
                         break;
                     case BluetoothAdapter.STATE_ON:
                         Log.d(TAG, "mBroadcastReceiver1: STATE ON");
+                        btSwitch.setChecked((true));
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
                         Log.d(TAG, "mBroadcastReceiver1: STATE TURNING ON");
@@ -183,7 +186,7 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bt_fragment,container,false);
-        Button btnONOFF = (Button) view.findViewById(R.id.btnONOFF);
+        btSwitch = (Switch) view.findViewById(R.id.btSwitch);
         btnEnableDisable_Discoverable = (Button) view.findViewById(R.id.btnDiscoverable_on_off);
         lvNewDevices = (ListView) view.findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
@@ -199,12 +202,15 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
 
         lvNewDevices.setOnItemClickListener(bt_frag.this);
 
-
-        btnONOFF.setOnClickListener(new View.OnClickListener() {
+        btSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Log.d(TAG, "onClick: enabling/disabling bluetooth.");
-                enableDisableBT();
+                if (btSwitch.isChecked()) {
+                    enableDisableBT(true);
+                } else {
+                    enableDisableBT(false);
+                }
             }
         });
 
@@ -219,14 +225,15 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         btnFindUnpairedDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enableDisable_Discoverable();
+                findUnpairedDevices();
             }
         });
 
         btnEnableDisable_Discoverable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findUnpairedDevices();
+                enableDisable_Discoverable();
+
             }
         });
 
@@ -234,11 +241,12 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
     }
 
 
-    public void enableDisableBT(){
+    public void enableDisableBT(boolean open) {
         if(mBluetoothAdapter == null){
             Log.d(TAG, "enableDisableBT: Does not have BT capabilities.");
         }
-        if(!mBluetoothAdapter.isEnabled()){
+
+        if (!mBluetoothAdapter.isEnabled() && open) {
             Log.d(TAG, "enableDisableBT: enabling BT.");
             Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivity(enableBTIntent);
@@ -246,7 +254,8 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
             IntentFilter BTIntent = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
             getActivity().registerReceiver(mBroadcastReceiver1, BTIntent);
         }
-        if(mBluetoothAdapter.isEnabled()){
+
+        if (mBluetoothAdapter.isEnabled() && !open) {
             Log.d(TAG, "enableDisableBT: disabling BT.");
             mBluetoothAdapter.disable();
 
