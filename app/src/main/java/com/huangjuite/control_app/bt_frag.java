@@ -22,6 +22,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
     Button btnSend;
     Switch btSwitch;
     EditText etSend;
+    TextView connectedText;
 
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
@@ -193,12 +197,16 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         btnFindUnpairedDevices = view.findViewById(R.id.btnFindUnpairedDevices);
         btnSend = (Button) view.findViewById(R.id.btnSend);
         etSend = (EditText) view.findViewById(R.id.editText);
+        connectedText = (TextView) view.findViewById(R.id.connectedText);
 
         //Broadcasts when bond state changes (ie:pairing)
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         getActivity().registerReceiver(mBroadcastReceiver4, filter);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter.isEnabled()) {
+            btSwitch.setChecked(true);
+        }
 
         lvNewDevices.setOnItemClickListener(bt_frag.this);
 
@@ -221,10 +229,10 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
             }
         });
 
-
         btnFindUnpairedDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mBTDevices.clear();
                 findUnpairedDevices();
             }
         });
@@ -323,13 +331,14 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         String deviceName = mBTDevices.get(i).getName();
         String deviceAddress = mBTDevices.get(i).getAddress();
 
+
         Log.d(TAG, "onItemClick: deviceName = " + deviceName);
         Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
 
         //mBTDevices.get(i).createBond();
 
         mBTDevice = mBluetoothAdapter.getRemoteDevice(deviceAddress);
-        mBluetoothConnection = new BluetoothConnectionService(getActivity(),mBTDevice);
+        mBluetoothConnection = new BluetoothConnectionService(getActivity(), mBTDevice, connectedText);
 
     }
 

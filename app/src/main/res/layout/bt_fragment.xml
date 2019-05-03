@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btSwitch" />
+        app:layout_constraintTop_toBottomOf="@+id/connectedText" />
 
     <ListView
         android:id="@+id/lvNewDevices"
@@ -35,8 +35,11 @@
         android:layout_height="252dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="36dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185" />
 
     <EditText
         android:id="@+id/editText"
@@ -44,24 +47,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvNewDevices"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginBottom="36dp"
         android:hint="@string/enter_text_here"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSend"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDiscoverable_on_off" />
 
     <Button
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvNewDevices"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="64dp"
         android:layout_toRightOf="@+id/editText"
         android:text="@string/send"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/editText" />
 
     <Switch
@@ -69,11 +71,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BLUETOOTH"
-        app:layout_constraintBottom_toTopOf="@+id/btnFindUnpairedDevices"
+        app:layout_constraintBottom_toTopOf="@+id/connectedText"
         app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/connectedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="          "
+        app:layout_constraintBottom_toTopOf="@+id/btnFindUnpairedDevices"
+        app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSwitch" />
 
 
 </android.support.constraint.ConstraintLayout>

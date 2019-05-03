@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,9 +37,11 @@ public class BluetoothConnectionService {
     private Boolean connected = false;
 
     private ConnectedThread mConnectedThread;
+    private TextView connectedText;
 
-    public BluetoothConnectionService(Context context,BluetoothDevice device) {
+    public BluetoothConnectionService(Context context, BluetoothDevice device, TextView textView) {
         mContext = context;
+        connectedText = textView;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         Log.d(TAG, "startClient: Started.");
         mmDevice = device;
@@ -71,7 +74,6 @@ public class BluetoothConnectionService {
                 btSocket.connect();
             } catch (IOException e) {
                 ConnectSuccess = false;
-                Log.d(TAG,"connected");
                 e.printStackTrace();
             }
 
@@ -88,8 +90,9 @@ public class BluetoothConnectionService {
             }catch (NullPointerException e){
                 e.printStackTrace();
             }
-
+            connectedText.setText("Connected to : " + mmDevice.getName());
             if (!ConnectSuccess) {
+                connectedText.setText("");
                 Log.d(TAG,"Connection Failed. Is it a SPP Bluetooth? Try again.");
             } else {
                 startCommunication(btSocket,dispositivo);
@@ -115,7 +118,6 @@ public class BluetoothConnectionService {
             mmSocket = socket;
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
-
 
             try {
                 tmpIn = mmSocket.getInputStream();
@@ -160,6 +162,7 @@ public class BluetoothConnectionService {
         /* Call this from the main activity to shutdown the connection */
         public void cancel() {
             try {
+                connectedText.setText("");
                 connected = false;
                 mmSocket.close();
             } catch (IOException e) { }
@@ -184,27 +187,3 @@ public class BluetoothConnectionService {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
