@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private control_frag control_fragment;
     private bt_frag connection_fragment;
+    private pid_frag pid_fragment;
 
     private Timer timer;
     private TimerTask task;
@@ -32,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         control_fragment = new control_frag();
         connection_fragment = new bt_frag();
+        pid_fragment = new pid_frag();
+        pid_fragment.setActivity(this);
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-
 
         task = new TimerTask() {
             @Override
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     motor_l = toMotorString(joyValue[0] - joyValue[1]);
                     motor_r = toMotorString(joyValue[0] + joyValue[1]);
 
-                    connection_fragment.getmBluetoothConnection().write(motor_l+motor_r);
+                    btSentText(motor_l + motor_r);
                 }
             }
         };
@@ -62,15 +64,19 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-
     }
 
     private void setupViewPager(CustomViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(control_fragment, "control");
         adapter.addFragment(connection_fragment, "connection");
+        adapter.addFragment(pid_fragment, "pid");
         viewPager.setAdapter(adapter);
 
+    }
+
+    public void btSentText(String command) {
+        connection_fragment.getmBluetoothConnection().write(command);
     }
 
 
@@ -81,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         string += String.format("%02d",v);
         return string;
     }
-
 
 
 }

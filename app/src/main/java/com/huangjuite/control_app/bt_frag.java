@@ -54,7 +54,7 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
     public DeviceListAdapter mDeviceListAdapter;
 
     ListView lvNewDevices;
-
+    
 
     // Create a BroadcastReceiver for ACTION_FOUND
     private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
