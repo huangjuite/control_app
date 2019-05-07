@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         control_fragment = new control_frag();
         connection_fragment = new bt_frag();
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+
+
         task = new TimerTask() {
             @Override
             public void run() {

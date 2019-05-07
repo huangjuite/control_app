@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connectedText" />
+        app:layout_constraintTop_toBottomOf="@+id/connectionText" />
 
     <ListView
         android:id="@+id/lvNewDevices"
@@ -47,10 +47,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvNewDevices"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="50dp"
         android:hint="@string/enter_text_here"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSend"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDiscoverable_on_off" />
 
@@ -59,8 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvNewDevices"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="36dp"
         android:layout_toRightOf="@+id/editText"
         android:text="@string/send"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,17 +72,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BLUETOOTH"
-        app:layout_constraintBottom_toTopOf="@+id/connectedText"
+        app:layout_constraintBottom_toTopOf="@+id/connectionText"
         app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/connectedText"
+        android:id="@+id/connectionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="          "
+        android:text="                 "
         app:layout_constraintBottom_toTopOf="@+id/btnFindUnpairedDevices"
         app:layout_constraintEnd_toStartOf="@+id/lvNewDevices"
         app:layout_constraintHorizontal_bias="0.5"

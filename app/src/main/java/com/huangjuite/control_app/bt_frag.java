@@ -197,7 +197,7 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         btnFindUnpairedDevices = view.findViewById(R.id.btnFindUnpairedDevices);
         btnSend = (Button) view.findViewById(R.id.btnSend);
         etSend = (EditText) view.findViewById(R.id.editText);
-        connectedText = (TextView) view.findViewById(R.id.connectedText);
+        connectedText = (TextView) view.findViewById(R.id.connectionText);
 
         //Broadcasts when bond state changes (ie:pairing)
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);

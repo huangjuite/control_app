@@ -16,7 +16,7 @@
         app:force_square="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:motion_constraint="None"
+        app:motion_constraint="Vertical"
         app:start_on_first_touch="true">
 
         <Button
@@ -49,7 +49,7 @@
         app:force_square="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:motion_constraint="None"
+        app:motion_constraint="Horizontal"
         app:start_on_first_touch="true">
 
         <Button
