@@ -73,51 +73,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textKd" />
 
     <Button
-        android:id="@+id/kp_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="down"
-        app:layout_constraintBottom_toTopOf="@+id/ki_down"
-        app:layout_constraintEnd_toStartOf="@+id/seekBarKp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textKp"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/ki_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="down"
-        app:layout_constraintBottom_toTopOf="@+id/kd_down"
-        app:layout_constraintEnd_toStartOf="@+id/seekBarKi"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textKi"
-        app:layout_constraintTop_toBottomOf="@+id/kp_down" />
-
-    <Button
-        android:id="@+id/kd_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="down"
-        app:layout_constraintBottom_toTopOf="@+id/reference_down"
-        app:layout_constraintEnd_toStartOf="@+id/seekBarKd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textKd"
-        app:layout_constraintTop_toBottomOf="@+id/ki_down" />
-
-    <Button
-        android:id="@+id/reference_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="down"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/seekBarReference"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textReference"
-        app:layout_constraintTop_toBottomOf="@+id/kd_down" />
-
-    <Button
         android:id="@+id/kp_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -245,5 +200,50 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/ki_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintBottom_toTopOf="@+id/kd_down"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarKi"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textKi"
+        app:layout_constraintTop_toBottomOf="@+id/kp_down" />
+
+    <Button
+        android:id="@+id/kp_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintBottom_toTopOf="@+id/ki_down"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarKp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textKp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/kd_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintBottom_toTopOf="@+id/reference_down"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarKd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textKd"
+        app:layout_constraintTop_toBottomOf="@+id/ki_down" />
+
+    <Button
+        android:id="@+id/reference_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarReference"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textReference"
+        app:layout_constraintTop_toBottomOf="@+id/kd_down" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,17 +43,20 @@ public class pid_frag extends Fragment {
 
         kpUp = view.findViewById(R.id.kp_up);
         kpDown = view.findViewById(R.id.kp_down);
+
         kiUp = view.findViewById(R.id.ki_up);
         kiDown = view.findViewById(R.id.ki_down);
+
         kdUp = view.findViewById(R.id.kd_up);
         kdDown = view.findViewById(R.id.kd_down);
+
         referenceUp = view.findViewById(R.id.reference_up);
         referenceDown = view.findViewById(R.id.reference_down);
 
-        tunerKp = new Tuner(kpUp, kpDown, seekBarKp, textKp, activity);
-        tunerKi = new Tuner(kiUp, kiDown, seekBarKi, textKi, activity);
-        tunerKd = new Tuner(kdUp, kdDown, seekBarKd, textKd, activity);
-        tunerReference = new Tuner(referenceUp, referenceDown, seekBarReference, textReference, activity);
+        tunerKp = new Tuner(kpUp, kpDown, seekBarKp, textKp, activity,24,35,0,"p");
+        tunerKi = new Tuner(kiUp, kiDown, seekBarKi, textKi, activity,1.01,2,0.5,"i");
+        tunerKd = new Tuner(kdUp, kdDown, seekBarKd, textKd, activity,32,50,0,"d");
+        tunerReference = new Tuner(referenceUp, referenceDown, seekBarReference, textReference, activity,-0.9,2,-2,"r");
 
 
 
