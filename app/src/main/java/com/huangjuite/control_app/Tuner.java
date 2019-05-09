@@ -28,6 +28,8 @@ public class Tuner {
         this.lower_bound = (float)_lowerbound;
         this.seekBar.setMax(1000);
 
+        setSeekBar(value);
+        textView.setText(valuetoString(value));
 
         up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +38,7 @@ public class Tuner {
                 value = limits(value);
                 setSeekBar(value);
                 textView.setText(valuetoString(value));
+                activity.btSentText(valuetoString(value));
             }
         });
 
@@ -46,6 +49,7 @@ public class Tuner {
                 value = limits(value);
                 setSeekBar(value);
                 textView.setText(valuetoString(value));
+                activity.btSentText(valuetoString(value));
             }
         });
 
@@ -65,7 +69,7 @@ public class Tuner {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                activity.btSentText(valuetoString(value));
             }
         });
 

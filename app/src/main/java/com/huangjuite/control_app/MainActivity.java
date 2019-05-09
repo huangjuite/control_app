@@ -76,7 +76,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btSentText(String command) {
-        connection_fragment.getmBluetoothConnection().write(command);
+        try {
+            connection_fragment.getmBluetoothConnection().write(command);
+        } catch (NullPointerException except) {
+            Log.d(TAG, "connection not created");
+        }
+
     }
 
 
