@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         timer.scheduleAtFixedRate(task, 1000, 250);
         Log.d(TAG,"timer set");
 
-
         // Set up the ViewPager with the sections adapter.
         mViewPager = (CustomViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
@@ -69,8 +68,9 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(CustomViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(control_fragment, "control");
-        adapter.addFragment(connection_fragment, "connection");
         adapter.addFragment(pid_fragment, "pid");
+        adapter.addFragment(connection_fragment, "connection");
+
         viewPager.setAdapter(adapter);
 
     }

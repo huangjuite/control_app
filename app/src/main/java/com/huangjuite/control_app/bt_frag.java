@@ -225,7 +225,11 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mBluetoothConnection.write(etSend.getText().toString());
+                try {
+                    mBluetoothConnection.write(etSend.getText().toString());
+                } catch (Exception except) {
+                    Log.d(TAG, "connection not created");
+                }
             }
         });
 
