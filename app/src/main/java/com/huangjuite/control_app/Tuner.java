@@ -17,7 +17,7 @@ public class Tuner {
     String command_prefix;
 
 
-    public Tuner(Button _up, Button _down, SeekBar _seekBar, final TextView _textView, MainActivity _activity, double _initvalue, double _upperbound, double _lowerbound, String command_prifix) {
+    public Tuner(Button _up, Button _down, SeekBar _seekBar, final TextView _textView, MainActivity _activity, double _initvalue, double _upperbound, double _lowerbound, String _command_prifix) {
         this.up = _up;
         this.down = _down;
         this.seekBar = _seekBar;
@@ -27,6 +27,7 @@ public class Tuner {
         this.upper_bound = (float)_upperbound;
         this.lower_bound = (float)_lowerbound;
         this.seekBar.setMax(1000);
+        this.command_prefix = _command_prifix;
 
         setSeekBar(value);
         textView.setText(valuetoString(value));
@@ -38,7 +39,7 @@ public class Tuner {
                 value = limits(value);
                 setSeekBar(value);
                 textView.setText(valuetoString(value));
-                activity.btSentText(valuetoString(value));
+                activity.btSentText(command_prefix + valuetoString(value));
             }
         });
 
@@ -49,7 +50,7 @@ public class Tuner {
                 value = limits(value);
                 setSeekBar(value);
                 textView.setText(valuetoString(value));
-                activity.btSentText(valuetoString(value));
+                activity.btSentText(command_prefix + valuetoString(value));
             }
         });
 
@@ -69,7 +70,7 @@ public class Tuner {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                activity.btSentText(valuetoString(value));
+                activity.btSentText(command_prefix + valuetoString(value));
             }
         });
 
