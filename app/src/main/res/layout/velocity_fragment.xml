@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <SeekBar
+        android:id="@+id/seekBarKp"
+        android:layout_width="280dp"
+        android:layout_height="37dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarKi"
+        app:layout_constraintEnd_toStartOf="@+id/kp_up"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/kp_down"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textKi"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:text="0"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textKd"
+        app:layout_constraintEnd_toStartOf="@+id/ki_down"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textKp" />
+
+    <TextView
+        android:id="@+id/textKp"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:text="0"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textKi"
+        app:layout_constraintEnd_toStartOf="@+id/kp_down"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textKd"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:text="0"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textReference"
+        app:layout_constraintEnd_toStartOf="@+id/kd_down"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textKi" />
+
+    <TextView
+        android:id="@+id/textReference"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="24dp"
+        android:text="0"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reference_down"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textKd" />
+
+    <Button
+        android:id="@+id/kp_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="up"
+        app:layout_constraintBottom_toTopOf="@+id/ki_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/seekBarKp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ki_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="up"
+        app:layout_constraintBottom_toTopOf="@+id/kd_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/seekBarKi"
+        app:layout_constraintTop_toBottomOf="@+id/kp_up" />
+
+    <Button
+        android:id="@+id/kd_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="up"
+        app:layout_constraintBottom_toTopOf="@+id/reference_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/seekBarKd"
+        app:layout_constraintTop_toBottomOf="@+id/ki_up" />
+
+    <Button
+        android:id="@+id/reference_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/seekBarReference"
+        app:layout_constraintTop_toBottomOf="@+id/kd_up" />
+
+    <SeekBar
+        android:id="@+id/seekBarKi"
+        android:layout_width="280dp"
+        android:layout_height="37dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarKd"
+        app:layout_constraintEnd_toStartOf="@+id/ki_up"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ki_down"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarKp" />
+
+    <SeekBar
+        android:id="@+id/seekBarKd"
+        android:layout_width="280dp"
+        android:layout_height="37dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarReference"
+        app:layout_constraintEnd_toStartOf="@+id/kd_up"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/kd_down"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarKi" />
+
+    <SeekBar
+        android:id="@+id/seekBarReference"
+        android:layout_width="280dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reference_up"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reference_down"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarKd" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Ki"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/textKi"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Kp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/textKp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Kd"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/textKd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
+        android:text="Reference"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textReference"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/ki_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintBottom_toTopOf="@+id/kd_down"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarKi"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textKi"
+        app:layout_constraintTop_toBottomOf="@+id/kp_down" />
+
+    <Button
+        android:id="@+id/kp_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintBottom_toTopOf="@+id/ki_down"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarKp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textKp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/kd_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintBottom_toTopOf="@+id/reference_down"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarKd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textKd"
+        app:layout_constraintTop_toBottomOf="@+id/ki_down" />
+
+    <Button
+        android:id="@+id/reference_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarReference"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textReference"
+        app:layout_constraintTop_toBottomOf="@+id/kd_down" />
+
+</android.support.constraint.ConstraintLayout>

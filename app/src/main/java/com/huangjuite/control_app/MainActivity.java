@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private control_frag control_fragment;
     private bt_frag connection_fragment;
     private pid_frag pid_fragment;
+    private velocity_frag velocity_fragment;
 
     private Timer timer;
     private TimerTask task;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         connection_fragment = new bt_frag();
         pid_fragment = new pid_frag();
         pid_fragment.setActivity(this);
+        velocity_fragment = new velocity_frag();
+        velocity_fragment.setActivity(this);
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         task = new TimerTask() {
@@ -68,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(CustomViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(control_fragment, "control");
-        adapter.addFragment(pid_fragment, "pid");
+        adapter.addFragment(pid_fragment, "pose pid");
+        adapter.addFragment(velocity_fragment,"position pid");
         adapter.addFragment(connection_fragment, "connection");
 
         viewPager.setAdapter(adapter);
