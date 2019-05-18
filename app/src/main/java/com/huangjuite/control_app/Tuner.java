@@ -23,7 +23,7 @@ public class Tuner {
         this.seekBar = _seekBar;
         this.textView = _textView;
         this.activity = _activity;
-        this.value  = (int)_initvalue*100;
+        this.value = (int) (_initvalue * 100);
         this.upper_bound = (float)_upperbound;
         this.lower_bound = (float)_lowerbound;
         this.seekBar.setMax(1000);
