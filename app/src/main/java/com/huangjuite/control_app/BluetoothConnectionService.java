@@ -9,15 +9,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
-/**
- * Created by User on 12/21/2016.
- */
 
 public class BluetoothConnectionService {
     private static final String TAG = "BluetoothConnectionServ";
@@ -53,6 +52,33 @@ public class BluetoothConnectionService {
 
     public Boolean isConnected() {
         return connected;
+    }
+
+    public Double getbtAngle(){
+        if(mConnectedThread==null) return null;
+        return mConnectedThread.btAngle;
+    }
+
+    public double[] getPos(){
+        if(mConnectedThread==null) return null;
+        return mConnectedThread.pos;
+    }
+
+    private void startCommunication(BluetoothSocket mmSocket, BluetoothDevice mmDevice) {
+        Log.d(TAG, "connected: Starting.");
+        connected = true;
+        // Start the thread to manage the connection and perform transmissions
+        mConnectedThread = new ConnectedThread(mmSocket);
+        mConnectedThread.start();
+    }
+
+    public void write(String string) {
+        byte[] bytes = string.getBytes(Charset.defaultCharset());
+
+        Log.d(TAG, "write: Write Called.");
+        //perform the write
+        if(mConnectedThread!=null)
+            mConnectedThread.write(bytes);
     }
 
     private class ConnectBT extends AsyncTask<Void, Void, Void> {
@@ -111,10 +137,12 @@ public class BluetoothConnectionService {
         private final BluetoothSocket mmSocket;
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
+        public double btAngle;
+        public double pos[];
 
         public ConnectedThread(BluetoothSocket socket) {
             Log.d(TAG, "ConnectedThread: Starting.");
-
+            pos = new double[2];
             mmSocket = socket;
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
@@ -138,9 +166,22 @@ public class BluetoothConnectionService {
             while (true) {
                 // Read from the InputStream
                 try {
-                    bytes = mmInStream.read(buffer);
-                    String incomingMessage = new String(buffer, 0, bytes);
-                    Log.d(TAG, "InputStream: " + incomingMessage);
+                    BufferedReader r = new BufferedReader(new InputStreamReader(mmInStream));
+                    String[] line = r.readLine().split(",");
+                    try {
+                        btAngle = Double.parseDouble(line[0]);
+                        Log.d(TAG, "angle: " + btAngle);
+                        try {
+                            pos[0] = Double.parseDouble(line[1]);
+                            pos[1] = Double.parseDouble(line[2]);
+                            Log.d(TAG, "pos:"+pos[0]+","+pos[1]);
+                        }catch (ArrayIndexOutOfBoundsException e){
+                            Log.e(TAG, "ArrayIndexOutOfBound");
+                        }
+                    }catch (NumberFormatException e){
+                        Log.e(TAG, "not a number");
+                    }
+                    //Log.d(TAG, "InputStream: " + btAngle+","+pos[0]+","+pos[1]);
                 } catch (IOException e) {
                     Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage() );
                     break;
@@ -169,21 +210,5 @@ public class BluetoothConnectionService {
         }
     }
 
-    private void startCommunication(BluetoothSocket mmSocket, BluetoothDevice mmDevice) {
-        Log.d(TAG, "connected: Starting.");
-        connected = true;
-        // Start the thread to manage the connection and perform transmissions
-        mConnectedThread = new ConnectedThread(mmSocket);
-        mConnectedThread.start();
-    }
-
-    public void write(String string) {
-        byte[] bytes = string.getBytes(Charset.defaultCharset());
-
-        Log.d(TAG, "write: Write Called.");
-        //perform the write
-        if(mConnectedThread!=null)
-            mConnectedThread.write(bytes);
-    }
 
 }

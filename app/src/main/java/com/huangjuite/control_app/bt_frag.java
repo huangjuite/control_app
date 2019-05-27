@@ -346,4 +346,13 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
 
     }
 
+    public Double getbtAngle(){
+        if(mBluetoothConnection==null) return null;
+        return mBluetoothConnection.getbtAngle();
+    }
+
+    public double[] getPos(){
+        if(mBluetoothConnection==null) return null;
+        return mBluetoothConnection.getPos();
+    }
 }

@@ -51,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
                     motor_r = toMotorString(joyValue[0] + joyValue[1]);
 
                     btSentText(motor_l + motor_r);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            pid_fragment.updateInfo(connection_fragment.getbtAngle());
+                            velocity_fragment.updateInfo(connection_fragment.getPos());
+                        }
+                    });
                 }
             }
         };

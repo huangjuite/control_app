@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class pid_frag extends Fragment {
 
-    TextView textKp, textKi, textKd, textReference;
+    TextView textKp, textKi, textKd, textReference,textAngle;
     SeekBar seekBarKp, seekBarKi, seekBarKd, seekBarReference;
     Button kpUp, kpDown, kiUp, kiDown, kdUp, kdDown, referenceUp, referenceDown;
     Tuner tunerKp, tunerKi, tunerKd, tunerReference;
@@ -35,6 +35,7 @@ public class pid_frag extends Fragment {
         textKi = view.findViewById(R.id.textKi);
         textKd = view.findViewById(R.id.textKd);
         textReference = view.findViewById(R.id.textReference);
+        textAngle = view.findViewById(R.id.textViewAngle);
 
         seekBarKp = view.findViewById(R.id.seekBarKp);
         seekBarKi = view.findViewById(R.id.seekBarKi);
@@ -53,14 +54,18 @@ public class pid_frag extends Fragment {
         referenceUp = view.findViewById(R.id.reference_up);
         referenceDown = view.findViewById(R.id.reference_down);
 
-        tunerKp = new Tuner(kpUp, kpDown, seekBarKp, textKp, activity, 25, 50, 0, "p");
-        tunerKi = new Tuner(kiUp, kiDown, seekBarKi, textKi, activity, 1.01, 50, 0, "i");
-        tunerKd = new Tuner(kdUp, kdDown, seekBarKd, textKd, activity,32,50,0,"d");
-        tunerReference = new Tuner(referenceUp, referenceDown, seekBarReference, textReference, activity,-0.9,2,-2,"r");
-
+        tunerKp = new Tuner(kpUp, kpDown, seekBarKp, textKp, activity, 24, 50, 0, "p");
+        tunerKi = new Tuner(kiUp, kiDown, seekBarKi, textKi, activity, 1.8, 50, 0, "i");
+        tunerKd = new Tuner(kdUp, kdDown, seekBarKd, textKd, activity,30,50,0,"d");
+        tunerReference = new Tuner(referenceUp, referenceDown, seekBarReference, textReference, activity,-2,5,-5,"r");
 
 
 
         return view;
     }
+
+    public void updateInfo(double angle){
+        textAngle.setText("Angle: "+ angle);
+    }
+
 }
