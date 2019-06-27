@@ -58,7 +58,7 @@ public class velocity_frag extends Fragment {
         tunerKp = new Tuner(kpUp, kpDown, seekBarKp, textKp, activity,0,50,0,"o");
         tunerKi = new Tuner(kiUp, kiDown, seekBarKi, textKi, activity,0,50,0,"u");
         tunerKd = new Tuner(kdUp, kdDown, seekBarKd, textKd, activity,0,50,0,"s");
-        tunerReference = new Tuner(referenceUp, referenceDown, seekBarReference, textReference, activity,0,2,-2,"e");
+        tunerReference = new Tuner(referenceUp, referenceDown, seekBarReference, textReference, activity, 0, 100, -100, "e");
 
 
 

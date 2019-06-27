@@ -44,13 +44,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(connection_fragment.getmBluetoothConnection()!=null && connection_fragment.getmBluetoothConnection().isConnected()){
-                    String motor_r,motor_l;
+                    int motor_r, motor_l;
                     int[] joyValue = control_fragment.getJoy_value();
 
-                    motor_l = toMotorString(joyValue[0] - joyValue[1]);
-                    motor_r = toMotorString(joyValue[0] + joyValue[1]);
+                    motor_l = joyValue[0];
+                    motor_r = joyValue[1];
 
-                    btSentText(motor_l + motor_r);
+                    btSentText("L" + String.valueOf(motor_l));
+                    btSentText("R" + String.valueOf(motor_r));
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         timer = new Timer();
-        timer.scheduleAtFixedRate(task, 1000, 250);
+        timer.scheduleAtFixedRate(task, 1000, 100);
         Log.d(TAG,"timer set");
 
         // Set up the ViewPager with the sections adapter.
@@ -83,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(connection_fragment, "connection");
 
         viewPager.setAdapter(adapter);
-
     }
 
     public void btSentText(String command) {

@@ -8,8 +8,8 @@
 
     <com.jmedeisis.bugstick.Joystick
         android:id="@+id/joystick_l"
-        android:layout_width="175dp"
-        android:layout_height="104dp"
+        android:layout_width="255dp"
+        android:layout_height="255dp"
         android:layout_marginStart="68dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/bg_base"
@@ -41,8 +41,8 @@
 
     <com.jmedeisis.bugstick.Joystick
         android:id="@+id/joystick_r"
-        android:layout_width="175dp"
-        android:layout_height="104dp"
+        android:layout_width="255dp"
+        android:layout_height="255dp"
         android:layout_marginEnd="68dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/bg_base"

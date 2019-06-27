@@ -54,9 +54,9 @@ public class pid_frag extends Fragment {
         referenceUp = view.findViewById(R.id.reference_up);
         referenceDown = view.findViewById(R.id.reference_down);
 
-        tunerKp = new Tuner(kpUp, kpDown, seekBarKp, textKp, activity, 24, 50, 0, "p");
-        tunerKi = new Tuner(kiUp, kiDown, seekBarKi, textKi, activity, 1.8, 50, 0, "i");
-        tunerKd = new Tuner(kdUp, kdDown, seekBarKd, textKd, activity,30,50,0,"d");
+        tunerKp = new Tuner(kpUp, kpDown, seekBarKp, textKp, activity, 24, 500, 0, "p");
+        tunerKi = new Tuner(kiUp, kiDown, seekBarKi, textKi, activity, 1.8, 500, 0, "i");
+        tunerKd = new Tuner(kdUp, kdDown, seekBarKd, textKd, activity, 30, 500, 0, "d");
         tunerReference = new Tuner(referenceUp, referenceDown, seekBarReference, textReference, activity,-2,5,-5,"r");
 
 

@@ -274,7 +274,6 @@ public class bt_frag extends Fragment implements AdapterView.OnItemClickListener
             IntentFilter BTIntent = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
             getActivity().registerReceiver(mBroadcastReceiver1, BTIntent);
         }
-
     }
 
 
